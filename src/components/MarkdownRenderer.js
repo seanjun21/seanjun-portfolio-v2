@@ -30,6 +30,7 @@ const StyledLink = styled.a`
     &::after {
       height: 110%;
       width: 110%;
+      background-color: ${props => props.theme.colors.tertiary};
     }
   }
 `;
