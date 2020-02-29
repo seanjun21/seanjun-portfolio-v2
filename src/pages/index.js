@@ -4,6 +4,7 @@ import Landing from '../sections/Landing';
 import About from '../sections/About';
 import Projects from '../sections/Projects';
 import Devto from '../sections/Devto';
+// import YouTube from '../sections/YouTube';
 // import Writing from '../sections/Writing';
 import Header from '../components/Header';
 import Footer from '../components/Footer';

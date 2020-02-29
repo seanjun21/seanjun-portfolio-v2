@@ -2,7 +2,13 @@ const contentful = require('contentful');
 const manifestConfig = require('./manifest-config');
 require('dotenv').config();
 
-const { ACCESS_TOKEN, SPACE_ID, ANALYTICS_ID, DETERMINISTIC } = process.env;
+const {
+  ACCESS_TOKEN,
+  SPACE_ID,
+  ANALYTICS_ID,
+  DETERMINISTIC,
+  YOUTUBE_API_KEY,
+} = process.env;
 
 const client = contentful.createClient({
   space: SPACE_ID,
@@ -40,6 +46,7 @@ const plugins = [
 module.exports = client.getEntries().then(entries => {
   const {
     // mediumUser,
+    // youtubeUser,
     devtoUser,
   } = entries.items.find(getAboutEntry).fields;
 
@@ -56,6 +63,13 @@ module.exports = client.getEntries().then(entries => {
         username: devtoUser || '@devto',
       },
     },
+    // {
+    //   resolve: `gatsby-source-youtube-v2`,
+    //   options: {
+    //     channelId: [youtubeUser],
+    //     apiKey: YOUTUBE_API_KEY,
+    //   },
+    // },
   );
 
   if (ANALYTICS_ID) {
@@ -71,6 +85,7 @@ module.exports = client.getEntries().then(entries => {
     siteMetadata: {
       isDevtoUserDefined: !!devtoUser,
       // isMediumUserDefined: !!mediumUser,
+      // isYoutubeUserDefine: !!youtubeUser,
       deterministicBehaviour: !!DETERMINISTIC,
     },
     plugins,
